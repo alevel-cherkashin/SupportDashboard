@@ -1,8 +1,7 @@
-﻿using System;
+﻿using SupportDashboard.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using SupportTask = SupportDashboard.BusinessLogic.Models.Task;
 
 namespace SupportDashboard.Controllers
 {
@@ -10,7 +9,9 @@ namespace SupportDashboard.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            TaskService taskService = new TaskService();
+            var tasks = taskService.GetAll();
+            return View(tasks);
         }
 
         public ActionResult About()
