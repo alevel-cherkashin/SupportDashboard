@@ -1,5 +1,6 @@
 ﻿using SupportDashboard.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using SupportTask = SupportDashboard.BusinessLogic.Models.Task;
 
@@ -7,10 +8,10 @@ namespace SupportDashboard.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            TaskService taskService = new TaskService();
-            var tasks = taskService.GetAll();
+            ISupportDashboard<SupportTask> taskService = new TaskService();
+            var tasks = await taskService.GetAll();
             return View(tasks);
         }
 

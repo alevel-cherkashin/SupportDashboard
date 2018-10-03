@@ -9,21 +9,29 @@ namespace SupportDashboard.Services
 {
     public class TaskService : ISupportDashboard<SupportTask>
     {
-        HttpClient client = new HttpClient();
+        private static HttpClient _httpClient;
+
+        static TaskService()
+        {
+            _httpClient = new HttpClient();
+
+            _httpClient.BaseAddress = new Uri(Properties.Settings.Default.ApiRoot);
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
         public async Task<SupportTask> Get(int id)
         {
-            client.BaseAddress = new Uri(Properties.Settings.Default.ApiRoot);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
             SupportTask task = null;
-            HttpResponseMessage responce = await client.GetAsync("api/tasks/{id}");
 
-            if (responce.IsSuccessStatusCode)
+            string url = $"api/Tasks/{id}";
+
+            HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
             {
-                task = await responce.Content.ReadAsAsync<SupportTask>();
+                task = await response.Content.ReadAsAsync<SupportTask>();
             }
 
             return task;
@@ -31,20 +39,48 @@ namespace SupportDashboard.Services
 
         public async Task<List<SupportTask>> GetAll()
         {
-            client.BaseAddress = new Uri(Properties.Settings.Default.ApiRoot);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
             List<SupportTask> tasks = null;
-            HttpResponseMessage responce = await client.GetAsync("api/tasks");
 
-            if (responce.IsSuccessStatusCode)
+            HttpResponseMessage response = await _httpClient.GetAsync("api/tasks");
+
+            if (response.IsSuccessStatusCode)
             {
-                tasks = await responce.Content.ReadAsAsync<List<SupportTask>>();
+                tasks = await response.Content.ReadAsAsync<List<SupportTask>>();
             }
 
             return tasks;
+        }
+
+        public async Task Delete(int id)
+        {
+            string url = $"api/tasks/{id}";
+
+            HttpResponseMessage response = await _httpClient.DeleteAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Delete is not success");
+            }
+        }
+
+        public async Task Add(SupportTask item)
+        {
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync("api/tasks/create", item);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Adding is not success");
+            }
+        }
+
+        public async Task Update(SupportTask item)
+        {
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync<SupportTask>("api/tasks/create", item);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Updateing is not success");
+            }
         }
     }
 }

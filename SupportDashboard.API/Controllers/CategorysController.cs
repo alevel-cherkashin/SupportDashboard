@@ -10,7 +10,7 @@ using SupportDashboard.BusinessLogic.Models;
 
 namespace SupportDashboard.API.Controllers
 {
-    [RoutePrefix("api/categores")]
+    [RoutePrefix("api/categories")]
     public class CategorysController : ApiController
     {
 
@@ -45,7 +45,7 @@ namespace SupportDashboard.API.Controllers
         }
 
         [HttpPost]
-        [Route("Create")]
+        [Route("create")]
         public IHttpActionResult Add([FromBody] Category category)
         {
             _supportCategory.Add(category);
@@ -54,7 +54,7 @@ namespace SupportDashboard.API.Controllers
         }
 
         [HttpPost]
-        [Route("Update")]
+        [Route("update")]
         public IHttpActionResult Update([FromBody] Category category)
         {
             _supportCategory.Update(category);

@@ -11,5 +11,11 @@ namespace SupportDashboard.Services
         Task<List<T>> GetAll();
 
         Task<T> Get(int id);
+
+        Task Delete(int id);
+
+        Task Add(T item);
+
+        Task Update(T item);
     }
 }

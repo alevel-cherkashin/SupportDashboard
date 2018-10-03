@@ -161,6 +161,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\ISupportDashboard.cs" />
     <Compile Include="Services\TaskService.cs" />
   </ItemGroup>

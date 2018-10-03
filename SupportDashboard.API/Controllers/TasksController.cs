@@ -42,7 +42,7 @@ namespace SupportDashboard.API.Controllers
         }
 
         [HttpPost]
-        [Route("Create")]
+        [Route("create")]
         public IHttpActionResult Add([FromBody]Task task)
         {
             _supportTask.Add(task);
@@ -51,7 +51,7 @@ namespace SupportDashboard.API.Controllers
         }
 
         [HttpPost]
-        [Route("Update")]
+        [Route("update")]
         public IHttpActionResult Update([FromBody] Task task)
         {
             _supportTask.Update(task);
