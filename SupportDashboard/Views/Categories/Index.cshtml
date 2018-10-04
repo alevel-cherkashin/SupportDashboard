@@ -1,0 +1,44 @@
+﻿@model List<SupportDashboard.BusinessLogic.Models.Category>
+
+@{
+    ViewBag.Title = "Categoty Page";
+}
+
+<h2 class="h2">Categories list</h2>
+<div class="row">
+    <div class="col-md-6">
+        @if (Model != null && Model.Any())
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th colspan="2">CategoryID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <td>@category.Title</td>
+                            <td>@category.Id</td>
+                            <td>
+                                <div class="pull-right">
+                                    @Html.ActionLink("Update", "Update", "Categories", new { id = category.Id }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", "Categories", new { id = category.Id }, new { @class = "btn btn-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-center"><b>Nothing found</b></p>
+        }
+        @Html.ActionLink("Add", "Add", "Categories", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+

@@ -1,0 +1,14 @@
+﻿@model SupportDashboard.BusinessLogic.Models.Category
+@{
+    ViewBag.Title = "Update Category";
+}
+
+<h2 class="h2">Update</h2>
+
+@using (Html.BeginForm("Update", "Categories"))
+{
+    Html.RenderPartial("Partials/CategoryDetails", Model);
+
+    <input class="btn btn-primary" type="submit" name="Update" value="Update">
+    @Html.ActionLink("Back", "Index", "Categories", null, new { @class = "btn btn-default" })
+}
