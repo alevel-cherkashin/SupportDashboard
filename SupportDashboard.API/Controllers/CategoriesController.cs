@@ -7,11 +7,10 @@ using System.Web.Http;
 using SupportDashboard.BusinessLogic.Service;
 using SupportDashboard.BusinessLogic.Models;
 
-
 namespace SupportDashboard.API.Controllers
 {
-    [RoutePrefix("api/categores")]
-    public class CategorysController : ApiController
+    [RoutePrefix("api/categories")]
+    public class CategoriesController : ApiController
     {
 
         private AppService<Category> _supportCategory = new SupportCategoryService();
@@ -19,9 +18,9 @@ namespace SupportDashboard.API.Controllers
         [HttpGet]
         public IHttpActionResult GetAll()
         {
-            var categorys = _supportCategory.GetAll();
+            var categories = _supportCategory.GetAll();
 
-            return Ok(categorys);
+            return Ok(categories);
         }
 
         [HttpGet]
@@ -45,7 +44,7 @@ namespace SupportDashboard.API.Controllers
         }
 
         [HttpPost]
-        [Route("Create")]
+        [Route("create")]
         public IHttpActionResult Add([FromBody] Category category)
         {
             _supportCategory.Add(category);
@@ -53,8 +52,8 @@ namespace SupportDashboard.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        [Route("Update")]
+        [HttpPut]
+        [Route("update")]
         public IHttpActionResult Update([FromBody] Category category)
         {
             _supportCategory.Update(category);

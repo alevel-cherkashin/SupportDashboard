@@ -1,4 +1,23 @@
-﻿@{
+﻿@model List<SupportDashboard.BusinessLogic.Models.Task>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<table>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.Decription</td>
+            </tr>
+        }
+    }
+</table>
+
+@{
     ViewBag.Title = "Home Page";
 }
 

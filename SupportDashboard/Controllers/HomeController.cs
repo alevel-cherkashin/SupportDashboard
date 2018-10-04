@@ -1,16 +1,18 @@
-﻿using System;
+﻿using SupportDashboard.Services;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using SupportTask = SupportDashboard.BusinessLogic.Models.Task;
 
 namespace SupportDashboard.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            ISupportDashboard<SupportTask> taskService = new TaskService();
+            var tasks = await taskService.GetAll();
+            return View(tasks);
         }
 
         public ActionResult About()

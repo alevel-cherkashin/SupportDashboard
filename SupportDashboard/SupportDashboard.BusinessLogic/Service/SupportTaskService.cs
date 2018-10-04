@@ -4,18 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using SupportDashboard.BusinessLogic.Models;
 
 namespace SupportDashboard.BusinessLogic.Service
 {
-    public class SupportTaskService : AppService<Models.Task>
+    class SupportTaskService : AppService<Models.Task>
     {
 
-        public SupportTaskService()
+        SupportTaskService() : base()
         {
             _file = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "tasks.txt");
-            _items = JsonConvert.DeserializeObject<List<Models.Task>>(File.ReadAllText(_file));
         }
 
         public override void Add(Models.Task item)
@@ -56,7 +54,7 @@ namespace SupportDashboard.BusinessLogic.Service
         {
             const int seed = 1;
 
-            if (_items == null || !_items.Any())
+            if (_items != null || !_items.Any())
                 return seed;
 
             return _items.Max(x => x.Id) + seed;

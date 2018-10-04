@@ -1,0 +1,13 @@
+﻿@model SupportDashboard.BusinessLogic.Models.Category
+@{
+    ViewBag.Title = "Add Category";
+}
+
+<h2>Add Category</h2>
+
+@using (Html.BeginForm("Add", "Categories"))
+{
+    Html.RenderPartial("Partials/CategoryDetails", Model);
+
+    <input type="submit" name="Add" value="Add">
+}
