@@ -10,4 +10,5 @@
     Html.RenderPartial("Partials/CategoryDetails", Model);
 
     <input class="btn btn-primary" type="submit" name="Update" value="Update">
+    @Html.ActionLink("Back", "Index", "Categories", null, new { @class = "btn btn-default" })
 }

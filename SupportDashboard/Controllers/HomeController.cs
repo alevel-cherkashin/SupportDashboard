@@ -8,11 +8,9 @@ namespace SupportDashboard.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            ISupportDashboard<SupportTask> taskService = new TaskService();
-            var tasks = await taskService.GetAll();
-            return View(tasks);
+            return View();
         }
 
         public ActionResult About()

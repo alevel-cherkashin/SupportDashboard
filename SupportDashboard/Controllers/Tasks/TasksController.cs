@@ -24,8 +24,10 @@ namespace SupportDashboard.Controllers.Tasks
         }
 
         [HttpGet]
-        public ActionResult Add()
+        public async Task<ActionResult> Add()
         {
+            var categories = await _categoryService.GetAll();
+            ViewBag.Select = _getSelectListCategories(categories);
             return View();
         }
 
@@ -39,7 +41,10 @@ namespace SupportDashboard.Controllers.Tasks
         [HttpGet]
         public async Task<ActionResult> Update(int id)
         {
+
             var task = await _taskService.Get(id);
+            var categories = await _categoryService.GetAll();
+            ViewBag.Select = _getSelectListCategories(categories, id);
             return View(task);
         }
 
@@ -55,6 +60,23 @@ namespace SupportDashboard.Controllers.Tasks
         {
             await _taskService.Delete(id);
             return RedirectToAction("Index");
+        }
+
+        private List<SelectListItem> _getSelectListCategories(List<Category> categories, int taskId = 0)
+        {
+            List<SelectListItem> categoriesList = new List<SelectListItem>();
+
+            foreach (var category in categories)
+            {
+                categoriesList.Add(new SelectListItem
+                {
+                    Text = category.Title,
+                    Value = category.Id.ToString(),
+                    Selected = category.Id == taskId
+                });
+            }
+
+            return categoriesList;
         }
     }
 }

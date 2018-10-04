@@ -15,11 +15,11 @@
                         <th>Category</th>
                         <th colspan="2">CategoryID</th>
                     </tr>
-                </thead>    
+                </thead>
                 <tbody>
                     @foreach (var category in Model)
                     {
-                        <tr>     
+                        <tr>
                             <td>@category.Title</td>
                             <td>@category.Id</td>
                             <td>
@@ -37,7 +37,8 @@
         {
             <p class="text-center"><b>Nothing found</b></p>
         }
-        @Html.ActionLink("Add", "Add", "Categories", null , new { @class = "btn btn-primary" })
+        @Html.ActionLink("Add", "Add", "Categories", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-default" })
     </div>
 </div>
 
