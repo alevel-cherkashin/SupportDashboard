@@ -1,8 +1,6 @@
 ﻿@model SupportDashboard.BusinessLogic.Models.Category
 
-<table class="table-bordered" width="500" height="100">
-    <tr>
-        <td>Category Name</td>
-        <td>@Html.TextBoxFor(x => x.Title)</td>
-    </tr>
-</table>>
+<div class="form-group">
+    <label for="category-title" class="contol-label">Category Title</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @id = "category-title" })
+</div>

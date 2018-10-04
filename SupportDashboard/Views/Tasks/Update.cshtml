@@ -3,11 +3,11 @@
     ViewBag.Title = "Update Task";
 }
 
-<h2>Update</h2>
+<h2 class="h2">Update</h2>
 
 @using (Html.BeginForm("Update", "Tasks"))
 {
     Html.RenderPartial("Partials/TaskDetails", Model);
 
-    <input type="submit" name="Update" value="Update">
+    <input class="btn btn-primary" type="submit" name="Update" value="Update">
 }

@@ -1,41 +1,58 @@
 ﻿@model List<SupportDashboard.BusinessLogic.Models.Task>
 
 @{
-    ViewBag.Title = "Tasks Page";
+    ViewBag.Title = "Tasks";
 }
 
-<h3>Task list</h3>
+<h2 class="h2">Tasks</h2>
 
-<table class="table-bordered" width="500" height="100">
-    <tr>
-        <td></td>
-        <td>Task</td>
-        <td>Decription</td>
-        <td>Category</td>
-        <td></td>
-    </tr>
-
-    @if (Model != null && Model.Any())
-    {
-        foreach (var task in Model)
+<div class="row">
+    <div class="col-md-6">
+        @if (Model != null && Model.Any())
         {
-            <tr>
-                <td>@Html.ActionLink("Update", "Update", "Tasks", new { id = task.Id }, null)</td>
-                <td>@task.Title</td>
-                <td>@task.Decription</td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Task</th>
+                    <th>Decription</th>
+                    <th colspan="2">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in Model)
+                {
+                    string category = "Not spacified";
 
-                @{foreach (var category in ViewBag.Category)
-                    {
-                        if (category.Id == task.CategoryId)
+                        foreach (var item in ViewBag.Category)
                         {
-                            <td>@category.Title</td>
-                        }
-                    }
-                }
-                <td>@Html.ActionLink("Delete", "Delete", "Tasks", new { id = task.Id }, null)</td>
-            </tr>
-        }
-    }
-</table>
+                            if (item.Id == task.CategoryId)
+                            {
+                                category = item.Title;
+                            }
 
-@Html.ActionLink("Add", "Add", "Tasks")
+                        }
+
+                        <tr>
+                            <td>@task.Title</td>
+                            <td>@task.Decription</td>
+                            <td>@category</td>
+                            <td>
+                                <div class="pull-right">
+                                    @Html.ActionLink("Update", "Update", "Tasks", new { id = task.Id }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", "Tasks", new { id = task.Id }, new { @class = "btn btn-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                 }
+            </tbody>
+        </table>
+        }
+        else
+        {
+            <p class="text-center"><b>Nothing found</b></p>
+        }
+        @Html.ActionLink("Add", "Add", "Tasks", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+

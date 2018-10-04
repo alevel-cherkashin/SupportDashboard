@@ -1,18 +1,17 @@
 ﻿@model SupportDashboard.BusinessLogic.Models.Task
 
-<table class="table-bordered" width="500" height="100">
-    <tr>
-        <td>Task Name</td>
-        <td>@Html.TextBoxFor(x => x.Title)</td>
-    </tr>
 
-    <tr>
-        <td>Task Decription</td>
-        <td>@Html.TextBoxFor(x => x.Decription)</td>
-    </tr>
+<div class="form-group">
+    <label for="task-title" class="contol-label">Task Name</label>
+    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @id = "task-title" })
+</div>
 
-    <tr>
-        <td>Task CategoryId</td>
-        <td>@Html.TextBoxFor(x => x.CategoryId)</td>
-    </tr>
-</table>>
+<div class="form-group">
+    <label for="task-description" class="contol-label">Task Description</label>
+    @Html.TextAreaFor(x => x.Decription, new { @class = "form-control", @id = "task-description" })
+</div>
+
+<div class="form-group">
+    <label for="task-category" class="contol-label">Task Category</label>
+    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control", @id = "task-category" })
+</div>
