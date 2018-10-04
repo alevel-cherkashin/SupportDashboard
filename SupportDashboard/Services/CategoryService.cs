@@ -75,7 +75,7 @@ namespace SupportDashboard.Services
 
         public async System.Threading.Tasks.Task Update(Category item)
         {
-            HttpResponseMessage response = await _httpClient.PutAsJsonAsync<Category>("api/categories/create", item);
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync<Category>("api/categories/update", item);
 
             if (!response.IsSuccessStatusCode)
             {

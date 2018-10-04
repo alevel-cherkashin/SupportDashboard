@@ -50,7 +50,7 @@ namespace SupportDashboard.API.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("update")]
         public IHttpActionResult Update([FromBody] Task task)
         {

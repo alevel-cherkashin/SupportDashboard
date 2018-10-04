@@ -75,7 +75,7 @@ namespace SupportDashboard.Services
 
         public async Task Update(SupportTask item)
         {
-            HttpResponseMessage response = await _httpClient.PutAsJsonAsync<SupportTask>("api/tasks/create", item);
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync<SupportTask>("api/tasks/update", item);
 
             if (!response.IsSuccessStatusCode)
             {

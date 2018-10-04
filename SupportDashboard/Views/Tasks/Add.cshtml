@@ -1,0 +1,13 @@
+﻿@model SupportDashboard.BusinessLogic.Models.Task
+@{
+    ViewBag.Title = "Add Task";
+}
+
+<h2>Add Task</h2>
+
+@using (Html.BeginForm("Add", "Tasks"))
+{
+    Html.RenderPartial("Partials/TaskDetails",Model);
+
+    <input type="submit" name="Add" value="Add">
+}

@@ -56,7 +56,7 @@ namespace SupportDashboard.BusinessLogic.Service
         {
             const int seed = 1;
 
-            if (_items != null || !_items.Any())
+            if (_items == null || !_items.Any())
                 return seed;
 
             return _items.Max(x => x.Id) + seed;
