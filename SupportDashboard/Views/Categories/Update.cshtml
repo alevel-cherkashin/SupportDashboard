@@ -3,11 +3,11 @@
     ViewBag.Title = "Update Category";
 }
 
-<h2>Update</h2>
+<h2 class="h2">Update</h2>
 
 @using (Html.BeginForm("Update", "Categories"))
 {
     Html.RenderPartial("Partials/CategoryDetails", Model);
 
-    <input type="submit" name="Update" value="Update">
+    <input class="btn btn-primary" type="submit" name="Update" value="Update">
 }

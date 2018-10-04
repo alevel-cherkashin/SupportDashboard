@@ -3,11 +3,11 @@
     ViewBag.Title = "Add Category";
 }
 
-<h2>Add Category</h2>
+<h2 class="h2">Add Category</h2>
 
 @using (Html.BeginForm("Add", "Categories"))
 {
     Html.RenderPartial("Partials/CategoryDetails", Model);
 
-    <input type="submit" name="Add" value="Add">
+    <input class="btn btn-primary" type="submit" name="Add" value="Add">
 }
