@@ -13,5 +13,5 @@
 
 <div class="form-group">
     <label for="task-category" class="contol-label">Task Category</label>
-    @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control", @id = "task-category" })
+    @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.Select, "None", new { @class = "form-control", @id = "task-category" })
 </div>
